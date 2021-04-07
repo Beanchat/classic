@@ -19,7 +19,7 @@ namespace apiClient
 
     public partial class Form1 : Form
     {
-
+        public string myUsername = "";
         void recieve()
         {
 
@@ -67,7 +67,7 @@ namespace apiClient
                 string[] array = test1.Split(Environment.NewLine);
                 array = array.Reverse().Take(17).ToArray();
 
-                label1.Text = string.Join(System.Environment.NewLine, array.Reverse());
+                msgDisplayLabel.Text = string.Join(System.Environment.NewLine, array.Reverse());
 
 
 
@@ -82,8 +82,17 @@ namespace apiClient
 
         void send()
         {
+            string sendString = "";
+            if(myUsername == "")
+            {
+                sendString = msgBox.Text;
+            }
+            else
+            {
+                sendString = myUsername + ": "+ msgBox.Text;
 
-            var sendString = textBox1.Text;
+            }
+            
 
             var url1 = "http://api.beanchat.isaacthoman.me/api/App?message=" + sendString;
 
@@ -167,12 +176,33 @@ namespace apiClient
 
             send();
             recieve();
-            textBox1.Text = "";
-            textBox1.Focus();
+            msgBox.Text = "";
+            msgBox.Focus();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            bool usernameSet = false;
+
+            this.Size = new Size(400, 420);
+            usernameGroup.Text = "";
+            mainGroup.Text = "";
+
+            if (usernameSet)
+            {
+                mainGroup.Location = new Point(0, -10);
+                usernameGroup.Location = new Point(600, 50);
+                
+            }
+            else
+            {
+
+                mainGroup.Location = new Point(600,50);
+                usernameGroup.Location = new Point(0, -10);
+              
+
+            }
+
 
         }
 
@@ -181,6 +211,21 @@ namespace apiClient
             recieve();
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
 
+        }
+
+        private void usernameSubmitBtn_Click(object sender, EventArgs e)
+        {
+            mainGroup.Location = new Point(0, -10);
+            usernameGroup.Location = new Point(600, 50);
+            myUsername = usernameBox.Text;
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

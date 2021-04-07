@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="2.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="2.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
   </ItemGroup>
 
