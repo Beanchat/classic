@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Threading;
 using DiscordRPC;
 using System.IO.IsolatedStorage;
+using DeviceId;
 
 namespace apiClient
 {
@@ -73,8 +74,10 @@ namespace apiClient
 
 
             });
-
-            bw.RunWorkerAsync();
+            if (bw.IsBusy==false) {
+                bw.RunWorkerAsync();
+            }
+            
 
 
 
@@ -169,7 +172,7 @@ namespace apiClient
         {
             recieve();
 
-           
+          
 
         }
 
