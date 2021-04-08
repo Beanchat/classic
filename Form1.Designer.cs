@@ -35,7 +35,7 @@ namespace apiClient
             this.msgSendBtn = new System.Windows.Forms.Button();
             this.msgDisplayLabel = new System.Windows.Forms.Label();
             this.mainHeader = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.mainGroup = new System.Windows.Forms.GroupBox();
             this.usernameGroup = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -93,11 +93,10 @@ namespace apiClient
             this.mainHeader.TabIndex = 5;
             this.mainHeader.TabStop = false;
             // 
-            // timer1
+            // refreshTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 6000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.refreshTimer.Interval = 6000;
+            this.refreshTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // mainGroup
             // 
@@ -106,7 +105,7 @@ namespace apiClient
             this.mainGroup.Controls.Add(this.msgSendBtn);
             this.mainGroup.Controls.Add(this.msgDisplayLabel);
             this.mainGroup.Controls.Add(this.msgBox);
-            this.mainGroup.Location = new System.Drawing.Point(600, 50);
+            this.mainGroup.Location = new System.Drawing.Point(12, 12);
             this.mainGroup.Name = "mainGroup";
             this.mainGroup.Size = new System.Drawing.Size(400, 400);
             this.mainGroup.TabIndex = 6;
@@ -120,7 +119,7 @@ namespace apiClient
             this.usernameGroup.Controls.Add(this.usernameSubmitBtn);
             this.usernameGroup.Controls.Add(this.usernameBox);
             this.usernameGroup.Controls.Add(this.label1);
-            this.usernameGroup.Location = new System.Drawing.Point(175, 209);
+            this.usernameGroup.Location = new System.Drawing.Point(418, 22);
             this.usernameGroup.Name = "usernameGroup";
             this.usernameGroup.Size = new System.Drawing.Size(400, 400);
             this.usernameGroup.TabIndex = 7;
@@ -189,7 +188,7 @@ namespace apiClient
         private System.Windows.Forms.Button msgSendBtn;
         private System.Windows.Forms.Label msgDisplayLabel;
         private System.Windows.Forms.PictureBox mainHeader;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.GroupBox mainGroup;
         private System.Windows.Forms.GroupBox usernameGroup;
         private System.Windows.Forms.Label label1;

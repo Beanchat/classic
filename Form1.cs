@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using DiscordRPC;
+using System.IO.IsolatedStorage;
 
 namespace apiClient
 {
@@ -142,7 +143,8 @@ namespace apiClient
 
         public Form1()
         {
-            
+
+
 
             InitializeComponent();
 
@@ -192,7 +194,7 @@ namespace apiClient
             {
                 mainGroup.Location = new Point(0, -10);
                 usernameGroup.Location = new Point(600, 50);
-                
+                refreshTimer.Enabled = true;
             }
             else
             {
@@ -221,6 +223,7 @@ namespace apiClient
             mainGroup.Location = new Point(0, -10);
             usernameGroup.Location = new Point(600, 50);
             myUsername = usernameBox.Text;
+            refreshTimer.Enabled = true;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
