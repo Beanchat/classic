@@ -24,7 +24,7 @@ namespace apiClient
         void recieve()
         {
 
-            var url = "http://api.beanchat.isaacthoman.me/api/App";
+            var url = "https://api.isaacthoman.me/api/App";
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
@@ -95,7 +95,7 @@ namespace apiClient
             }
             
 
-            var url1 = "http://api.beanchat.isaacthoman.me/api/App?message=" + sendString;
+            var url1 = "https://api.isaacthoman.me/api/App?message=" + sendString;
 
             var httpRequest1 = (HttpWebRequest)WebRequest.Create(url1);
             httpRequest1.Method = "POST";
@@ -224,6 +224,7 @@ namespace apiClient
             usernameGroup.Location = new Point(600, 50);
             myUsername = usernameBox.Text;
             refreshTimer.Enabled = true;
+            this.Text = "Beanchat";
         }
 
         private void button2_Click_1(object sender, EventArgs e)

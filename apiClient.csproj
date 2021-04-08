@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>2.ico</ApplicationIcon>
+    <AssemblyName>Beanchat</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

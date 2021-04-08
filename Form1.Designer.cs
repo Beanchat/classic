@@ -170,7 +170,7 @@ namespace apiClient
             this.Controls.Add(this.usernameGroup);
             this.Controls.Add(this.mainGroup);
             this.Name = "Form1";
-            this.Text = "Beanchat";
+            this.Text = "Beanchat but newer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainHeader)).EndInit();
             this.mainGroup.ResumeLayout(false);
