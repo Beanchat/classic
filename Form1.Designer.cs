@@ -38,6 +38,7 @@ namespace apiClient
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.mainGroup = new System.Windows.Forms.GroupBox();
             this.usernameGroup = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.usernameSubmitBtn = new System.Windows.Forms.Button();
             this.usernameBox = new System.Windows.Forms.TextBox();
@@ -115,6 +116,7 @@ namespace apiClient
             // 
             // usernameGroup
             // 
+            this.usernameGroup.Controls.Add(this.label2);
             this.usernameGroup.Controls.Add(this.button2);
             this.usernameGroup.Controls.Add(this.usernameSubmitBtn);
             this.usernameGroup.Controls.Add(this.usernameBox);
@@ -125,6 +127,16 @@ namespace apiClient
             this.usernameGroup.TabIndex = 7;
             this.usernameGroup.TabStop = false;
             this.usernameGroup.Text = "Username";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(286, 75);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Beanchat v1.1 Changes:\r\n-Added HTTPS Encryption\r\n-New IP banning capability on th" +
+    "e server (~spooky~)\r\n\r\nUhh- that\'s about it, have fun I guess!";
             // 
             // button2
             // 
@@ -170,7 +182,7 @@ namespace apiClient
             this.Controls.Add(this.usernameGroup);
             this.Controls.Add(this.mainGroup);
             this.Name = "Form1";
-            this.Text = "Beanchat but newer";
+            this.Text = "Beanchat Classic";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainHeader)).EndInit();
             this.mainGroup.ResumeLayout(false);
@@ -195,6 +207,7 @@ namespace apiClient
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button usernameSubmitBtn;
         private System.Windows.Forms.TextBox usernameBox;
+        private System.Windows.Forms.Label label2;
     }
 }
 

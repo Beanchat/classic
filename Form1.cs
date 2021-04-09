@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.Threading;
 using DiscordRPC;
 using System.IO.IsolatedStorage;
-using DeviceId;
 
 namespace apiClient
 {
