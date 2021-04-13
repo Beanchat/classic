@@ -505,7 +505,7 @@ namespace apiClient
 
 
             // clientsLabel.Text = "Last: "+oldRequestCount.ToString()+" Recent: "+newRequestCount.ToString()+" Diff: "+ diff.ToString()+" Clients: "+active;
-             clientsLabel.Text = "Clients: "+ active;
+            clientsLabel.Text = "Clients: " + active +  Environment.NewLine + "Requests: " + newRequestCount;
             oldRequestCount = newRequestCount;
             // clientsLabel.Text = newRequestCount.ToString();
         }
