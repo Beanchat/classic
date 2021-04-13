@@ -312,7 +312,7 @@ namespace apiClient
             // 
             // requestsChecker
             // 
-            this.requestsChecker.Interval = 30000;
+            this.requestsChecker.Interval = 12000;
             this.requestsChecker.Tick += new System.EventHandler(this.requestsChecker_Tick);
             // 
             // Form1

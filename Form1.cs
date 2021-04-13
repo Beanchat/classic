@@ -501,7 +501,7 @@ namespace apiClient
         {
             recieveRequests();
             int diff = newRequestCount - oldRequestCount;
-            int active = diff / 5;
+            int active = diff / (requestsChecker.Interval/6000);
 
 
             // clientsLabel.Text = "Last: "+oldRequestCount.ToString()+" Recent: "+newRequestCount.ToString()+" Diff: "+ diff.ToString()+" Clients: "+active;
