@@ -82,14 +82,14 @@ namespace apiClient
 
 
             if (adminMode) {
-                recieveAdmin(1);
+                recieveAdmin();
             }
             
         }
 
-        void recieveAdmin(int type)//just use 1 please
+        void recieveAdmin()
         {
-            var url3 = "https://api.isaacthoman.me/api/admin?token=" + tokenBox.Text + "&requestType="+type;
+            var url3 = "https://api.isaacthoman.me/api/admin?token=" + tokenBox.Text + "&requestType=1";
 
 
             var httpRequest3 = (HttpWebRequest)WebRequest.Create(url3);
@@ -152,6 +152,68 @@ namespace apiClient
 
 
 
+        void recieveRequests()
+        {
+            var url3 = "https://api.isaacthoman.me/api/admin?token=" + tokenBox.Text + "&requestType=2";
+
+
+            var httpRequest3 = (HttpWebRequest)WebRequest.Create(url3);
+            var httpResponse3 = (HttpWebResponse)httpRequest3.GetResponse();
+
+
+
+
+
+            // this allows our worker to report progress during work
+            bw4.WorkerReportsProgress = true;
+
+            // what to do in the background thread
+            bw4.DoWork += new DoWorkEventHandler(
+            delegate (object o, DoWorkEventArgs args)
+            {
+                BackgroundWorker b = o as BackgroundWorker;
+
+
+                using (var streamReader = new StreamReader(httpResponse3.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    args.Result = result.Trim('"');
+                    return;
+                }
+
+            });
+
+
+            // what to do when worker completes its task (notify the user)
+            bw4.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+            delegate (object o, RunWorkerCompletedEventArgs args)
+            {
+
+
+
+                string test1 = (string)args.Result;
+                test1 = test1.Replace("@newline", "" + System.Environment.NewLine);
+                string[] array = test1.Split(Environment.NewLine);
+                if (array.Length > 1) { lastMsgBox.Text = array.SkipLast(1).Last(); }
+
+                array = array.Reverse().Take(22).ToArray();
+
+                try { newRequestCount = int.Parse((string)args.Result); } catch { newRequestCount = 0; }
+                
+
+
+
+
+            });
+            if (bw4.IsBusy == false)
+            {
+                bw4.RunWorkerAsync();
+            }
+
+
+
+
+        }
 
 
         void send()
@@ -382,7 +444,9 @@ namespace apiClient
                 settingsExitBtn.Visible = false;
                 usernameGroup.Text = "Settings";
                 mainGroup.Text = "Main";
-                //requestsChecker.Enabled = true;
+                requestsChecker.Enabled = true;
+                recieveRequests();
+                oldRequestCount = newRequestCount;
             }
             else
             {
@@ -435,8 +499,15 @@ namespace apiClient
 
         private void requestsChecker_Tick(object sender, EventArgs e)
         {
+            recieveRequests();
+            int diff = newRequestCount - oldRequestCount;
+            int active = diff / 5;
 
-           // clientsLabel.Text = newRequestCount.ToString();
+
+            // clientsLabel.Text = "Last: "+oldRequestCount.ToString()+" Recent: "+newRequestCount.ToString()+" Diff: "+ diff.ToString()+" Clients: "+active;
+             clientsLabel.Text = "Clients: "+ active;
+            oldRequestCount = newRequestCount;
+            // clientsLabel.Text = newRequestCount.ToString();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -445,6 +516,11 @@ namespace apiClient
         }
 
         private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
         {
 
         }
