@@ -37,22 +37,30 @@ namespace apiClient
             this.mainHeader = new System.Windows.Forms.PictureBox();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.mainGroup = new System.Windows.Forms.GroupBox();
+            this.settingsBtn = new System.Windows.Forms.Button();
             this.usernameGroup = new System.Windows.Forms.GroupBox();
+            this.changeLog = new System.Windows.Forms.Label();
+            this.adminModeBox = new System.Windows.Forms.CheckBox();
+            this.settingsExitBtn = new System.Windows.Forms.Button();
             this.tokenBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.usernameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.consoleGroup = new System.Windows.Forms.GroupBox();
             this.consoleSendBtn = new System.Windows.Forms.Button();
             this.consoleBox2 = new System.Windows.Forms.TextBox();
             this.consoleDisplayLabel = new System.Windows.Forms.Label();
             this.lastMsgBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.adminGroup = new System.Windows.Forms.GroupBox();
+            this.clientsLabel = new System.Windows.Forms.Label();
+            this.requestsChecker = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainHeader)).BeginInit();
             this.mainGroup.SuspendLayout();
             this.usernameGroup.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.consoleGroup.SuspendLayout();
+            this.adminGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainRefreshBtn
@@ -108,6 +116,7 @@ namespace apiClient
             // 
             // mainGroup
             // 
+            this.mainGroup.Controls.Add(this.settingsBtn);
             this.mainGroup.Controls.Add(this.mainHeader);
             this.mainGroup.Controls.Add(this.mainRefreshBtn);
             this.mainGroup.Controls.Add(this.msgSendBtn);
@@ -121,18 +130,62 @@ namespace apiClient
             this.mainGroup.Text = "Main";
             this.mainGroup.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.Location = new System.Drawing.Point(205, 20);
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.settingsBtn.TabIndex = 6;
+            this.settingsBtn.Text = "Settings";
+            this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+            // 
             // usernameGroup
             // 
+            this.usernameGroup.Controls.Add(this.changeLog);
+            this.usernameGroup.Controls.Add(this.adminModeBox);
+            this.usernameGroup.Controls.Add(this.settingsExitBtn);
             this.usernameGroup.Controls.Add(this.tokenBox);
             this.usernameGroup.Controls.Add(this.label2);
             this.usernameGroup.Controls.Add(this.usernameBox);
             this.usernameGroup.Controls.Add(this.label1);
             this.usernameGroup.Location = new System.Drawing.Point(824, 12);
             this.usernameGroup.Name = "usernameGroup";
-            this.usernameGroup.Size = new System.Drawing.Size(400, 162);
+            this.usernameGroup.Size = new System.Drawing.Size(400, 192);
             this.usernameGroup.TabIndex = 7;
             this.usernameGroup.TabStop = false;
             this.usernameGroup.Text = "Settings";
+            // 
+            // changeLog
+            // 
+            this.changeLog.AutoSize = true;
+            this.changeLog.Location = new System.Drawing.Point(181, 52);
+            this.changeLog.Name = "changeLog";
+            this.changeLog.Size = new System.Drawing.Size(187, 105);
+            this.changeLog.TabIndex = 6;
+            this.changeLog.Text = "Beanchat v1.2 Changes:\r\n-Added settings button\r\n-Added \"admin mode\" option\r\n\r\nTo-" +
+    "do list:\r\n-Make usernames persistent\r\n-Enable address aliases for admins";
+            // 
+            // adminModeBox
+            // 
+            this.adminModeBox.AutoSize = true;
+            this.adminModeBox.Location = new System.Drawing.Point(7, 162);
+            this.adminModeBox.Name = "adminModeBox";
+            this.adminModeBox.Size = new System.Drawing.Size(96, 19);
+            this.adminModeBox.TabIndex = 5;
+            this.adminModeBox.Text = "Admin mode";
+            this.adminModeBox.UseVisualStyleBackColor = true;
+            this.adminModeBox.CheckedChanged += new System.EventHandler(this.adminModeBox_CheckedChanged);
+            // 
+            // settingsExitBtn
+            // 
+            this.settingsExitBtn.Location = new System.Drawing.Point(181, 20);
+            this.settingsExitBtn.Name = "settingsExitBtn";
+            this.settingsExitBtn.Size = new System.Drawing.Size(75, 23);
+            this.settingsExitBtn.TabIndex = 4;
+            this.settingsExitBtn.Text = "Back";
+            this.settingsExitBtn.UseVisualStyleBackColor = true;
+            this.settingsExitBtn.Click += new System.EventHandler(this.settingsExitBtn_Click);
             // 
             // tokenBox
             // 
@@ -147,9 +200,10 @@ namespace apiClient
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 15);
+            this.label2.Size = new System.Drawing.Size(79, 15);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Funny admin token:";
+            this.label2.Text = "Admin token:";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // usernameBox
             // 
@@ -167,19 +221,19 @@ namespace apiClient
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
             // 
-            // groupBox1
+            // consoleGroup
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Controls.Add(this.consoleSendBtn);
-            this.groupBox1.Controls.Add(this.consoleBox2);
-            this.groupBox1.Controls.Add(this.consoleDisplayLabel);
-            this.groupBox1.ForeColor = System.Drawing.Color.Lime;
-            this.groupBox1.Location = new System.Drawing.Point(418, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 400);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Funny Admin Panel";
+            this.consoleGroup.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.consoleGroup.Controls.Add(this.consoleSendBtn);
+            this.consoleGroup.Controls.Add(this.consoleBox2);
+            this.consoleGroup.Controls.Add(this.consoleDisplayLabel);
+            this.consoleGroup.ForeColor = System.Drawing.Color.Lime;
+            this.consoleGroup.Location = new System.Drawing.Point(418, 12);
+            this.consoleGroup.Name = "consoleGroup";
+            this.consoleGroup.Size = new System.Drawing.Size(400, 400);
+            this.consoleGroup.TabIndex = 7;
+            this.consoleGroup.TabStop = false;
+            this.consoleGroup.Text = "Funny Admin Panel";
             // 
             // consoleSendBtn
             // 
@@ -210,15 +264,15 @@ namespace apiClient
             // 
             // lastMsgBox
             // 
-            this.lastMsgBox.Location = new System.Drawing.Point(831, 203);
+            this.lastMsgBox.Location = new System.Drawing.Point(6, 54);
             this.lastMsgBox.Name = "lastMsgBox";
-            this.lastMsgBox.Size = new System.Drawing.Size(393, 23);
+            this.lastMsgBox.Size = new System.Drawing.Size(387, 23);
             this.lastMsgBox.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(831, 181);
+            this.label3.Location = new System.Drawing.Point(7, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 15);
             this.label3.TabIndex = 9;
@@ -226,7 +280,7 @@ namespace apiClient
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(831, 233);
+            this.button1.Location = new System.Drawing.Point(6, 83);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -234,29 +288,55 @@ namespace apiClient
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // adminGroup
+            // 
+            this.adminGroup.Controls.Add(this.clientsLabel);
+            this.adminGroup.Controls.Add(this.label3);
+            this.adminGroup.Controls.Add(this.button1);
+            this.adminGroup.Controls.Add(this.lastMsgBox);
+            this.adminGroup.Location = new System.Drawing.Point(824, 210);
+            this.adminGroup.Name = "adminGroup";
+            this.adminGroup.Size = new System.Drawing.Size(400, 202);
+            this.adminGroup.TabIndex = 11;
+            this.adminGroup.TabStop = false;
+            this.adminGroup.Text = "Admin stuff";
+            // 
+            // clientsLabel
+            // 
+            this.clientsLabel.AutoSize = true;
+            this.clientsLabel.Location = new System.Drawing.Point(6, 132);
+            this.clientsLabel.Name = "clientsLabel";
+            this.clientsLabel.Size = new System.Drawing.Size(51, 15);
+            this.clientsLabel.TabIndex = 11;
+            this.clientsLabel.Text = "requests";
+            // 
+            // requestsChecker
+            // 
+            this.requestsChecker.Interval = 3000;
+            this.requestsChecker.Tick += new System.EventHandler(this.requestsChecker_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1274, 432);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lastMsgBox);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1231, 424);
+            this.Controls.Add(this.adminGroup);
+            this.Controls.Add(this.consoleGroup);
             this.Controls.Add(this.usernameGroup);
             this.Controls.Add(this.mainGroup);
             this.Name = "Form1";
-            this.Text = "Beanchat but cooler";
+            this.Text = "Beanchat";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainHeader)).EndInit();
             this.mainGroup.ResumeLayout(false);
             this.mainGroup.PerformLayout();
             this.usernameGroup.ResumeLayout(false);
             this.usernameGroup.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.consoleGroup.ResumeLayout(false);
+            this.consoleGroup.PerformLayout();
+            this.adminGroup.ResumeLayout(false);
+            this.adminGroup.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -274,13 +354,21 @@ namespace apiClient
         private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.TextBox tokenBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox consoleGroup;
         private System.Windows.Forms.Label consoleDisplayLabel;
         private System.Windows.Forms.TextBox consoleBox2;
         private System.Windows.Forms.Button consoleSendBtn;
         private System.Windows.Forms.TextBox lastMsgBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button settingsExitBtn;
+        private System.Windows.Forms.GroupBox adminGroup;
+        private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.CheckBox adminModeBox;
+        private System.Windows.Forms.Label changeLog;
+        private System.Windows.Forms.Timer requestsChecker;
+        private System.Windows.Forms.Label clientsLabel;
     }
 }
 
